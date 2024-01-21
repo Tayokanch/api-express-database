@@ -26,6 +26,16 @@ router.post('/', async(req, res) => {
     
 });
 
+router.put('/:id', async(req, res)=>{
+    const {id} = req.params
+    const {title, type, author, topic, publication_date, pages } = req.body
+    const updateBook = await db.query(
+        'UPDATE books SET title = $1, type = $2, author = $3, topic = $4, publication_date = $5, pages = $6 WHERE id = $7 RETURNING *',
+        [title, type, author, topic, publication_date, pages, id]
+    )
+    res.json({data: updateBook.rows[0]})
+})
+
 
 
 module.exports = router
