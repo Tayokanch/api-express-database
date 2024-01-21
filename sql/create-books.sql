@@ -8,3 +8,5 @@ CREATE TABLE  books (
   publication_date DATE           NOT NULL,
   pages             INTEGER        NOT NULL
 );
+
+
